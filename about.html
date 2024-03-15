@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>EWRC</title>
+</head>
+
+<body>
+  <div class="w-full">
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if(localStorage.getItem("token") != null) { 
+        showScrapData();
+        }
+      });
+    </script>
+    <!-- Header -->
+    <section id="header">
+      <div class="header justify-center flex">
+        <div class="navbar">
+          <div class="brand">
+            <h1><span> E-Waste & Raddi Collection </span></h1></a>
+          </div>
+          <div class="nav-list">
+            <div class="hamburger">
+              <div class="bar"></div>
+            </div>
+            <ul>
+              <li><a href="./index.html" data-after="Home">Home</a></li>
+              <li><a href="./projects.html" data-after="Projects">Rate</a></li>
+              <li><a href="./about.html" data-after="About">Pickup-Schedule</a></li>
+              <li><a href="./contact.html" data-after="Contact">Contact</a></li>
+              <li id="login-logout"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Header -->
+
+
+
+
+
+    <script>
+      const loginLogoutEl = document.getElementById("login-logout");
+      const token = localStorage.getItem("token");
+
+      if (token) {
+        loginLogoutEl.innerHTML = '<a href="#" onclick="logoutUser()" data-after="LogOut">LogOut</a>';
+      } else {
+        loginLogoutEl.innerHTML = '<a href="./login.html" data-after="LogIn">LogIn</a>';
+      }
+
+      function logoutUser() {
+        localStorage.removeItem("token");
+        window.location.href = "./login.html";
+      }
+    </script>
+
+    <div class="static my-40 pt-20">
+      <section id="Pick-Up">
+        <title>Pickup-Schedule</title>
+        <h1 class="text-4xl font-bold uppercase tracking-wider text-center my-10">
+          Schedule <span class="text-crimson">For</span> Pick-Up
+        </h1>
+        <form id="scrap-form" class="bg-gray-200 rounded-lg p-8 h-full w-1/2 mx-auto text-2xl italic font-medium">
+          <div class="my-4">
+            <label for="name"><b>Name:</b></label>
+            <input id="name" type="text" placeholder="Enter Name" name="name"
+              class="w-full py-2 px-3 mt-2 rounded-md border-gray-300" required />
+            <div class="my-4">
+              <label for="phone"><b>Phone no:</b></label>
+              <input id="phone" type="tel" placeholder="Enter Phone Number" name="phone"
+                class="w-full py-2 px-3 mt-2 rounded-md border-gray-300" pattern="[789][0-9]{9}" required />
+              <div class="my-4">
+                <label for="itemWeight">Select item weight:</label>
+                <select name="itemWeight" id="itemWeight" class="w-full py-2 px-3 mt-2 rounded-md border-gray-300">
+                  <option value="lessThan10">Less than 10kg</option>
+                  <option value="10to50">10kg-50kg</option>
+                  <option value="50to100">50-100kg</option>
+                  <option value="100to200">100kg-200kg</option>
+                  <option value="200to500">200kg-500kg</option>
+                  <option value="500to700">500kg-700kg</option>
+                  <option value="moreThan700">More than 700kg</option>
+                </select>
+              </div>
+              <div class="my-4">
+                <label for="pickupDate">Pickup Date:</label>
+                <input type="date" id="date" name="pickupDate" class="w-full py-2 px-3 mt-2 rounded-md border-gray-300"
+                  min="2023-01-01" max="2030-12-31" required />
+              </div>
+              <div class="my-4">
+                <label for="pickupTime">Pickup Time:</label>
+                <input type="time" id="time" name="pickupTime" class="w-full py-2 px-3 mt-2 rounded-md border-gray-300"
+                  required />
+              </div>
+              <div class="my-4">
+                <label for="scrapDetails"><b>Scrap Details:</b></label>
+                <input id="scrapDetails" type="text" placeholder="Enter type of Scrap" name="scrapDetails"
+                  class="w-full py-2 px-3 mt-2 rounded-md border-gray-300" required />
+              </div>
+              <div class="my-4">
+                <label for="address"><b>Pickup Address:</b></label>
+                <input id="address" type="text" placeholder="Address" name="address"
+                  class="w-full py-2 px-3 mt-2 rounded-md border-gray-300" required />
+              </div>
+              <div class="my-4">
+                <button type="submit"
+                  class="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md cursor-pointer">
+                  Submit
+                </button>
+              </div>
+        </form>
+      </section>
+    </div>
+
+    <div class="flex justify-center items-center w-full">
+      <div class="text-center">
+        <h1 class="text-2xl font-bold">Scrap Tracker</h1>
+        <h2 class="text-xl font-medium mb-4">Your Scrap Details:</h2>
+        <main class="container mx-auto mt-8 px-4">
+          <div id="cards-container" class=" flex flex-wrap justify-center"></div>
+        </main>
+      </div>
+    </div>
+
+
+    <script>
+      const showScrapData = async () => {
+        try {
+          // Fetch all scrap data for the user from the server
+          const response = await fetch(
+            "http://localhost:5000/api/scrap/showScrapData",
+            {
+              headers: {
+                "Content-Type": "application/json",
+                "auth-token": localStorage.getItem("token"),
+              },
+            }
+          );
+          const data = await response.json();
+
+          // Clear any existing cards from the DOM
+          const cardsContainer = document.getElementById("cards-container");
+          cardsContainer.innerHTML = "";
+
+          // Dynamically create and add a card for each scrap item
+          data.forEach((scrapItem) => {
+            const card = document.createElement("div");
+            card.classList.add(
+              "bg-gray-200",
+              "mx-2",
+              "rounded-lg",
+              "p-8",
+              "my-4",
+              "mx-auto",
+              "w-1/2"
+            );
+            const date = new Date(scrapItem.date).toISOString().slice(0, 10);
+            card.innerHTML = `
+        <h2 class="text-xl font-medium">Scrap Datails : ${scrapItem.scrapDetails}</h2>
+        <p class="text-gray-500">Name : ${scrapItem.name}</p>
+        <p class="text-gray-500">Phone no : ${scrapItem.phone}</p>
+        <p class="text-gray-500">Item Weight : ${scrapItem.itemWeight}</p>
+        <p class="text-gray-500">Date & Time : ${date} ${scrapItem.time}</p>
+        <p class="text-gray-700">Address : ${scrapItem.address}</p>`;
+            cardsContainer.appendChild(card);
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+      const sendScrapData = async () => {
+        const name = document.querySelector("#name").value;
+        const phone = document.querySelector("#phone").value;
+        const address = document.querySelector("#address").value;
+        const scrapDetails = document.querySelector("#scrapDetails").value;
+        const itemWeight = document.querySelector("#itemWeight").value;
+        const date = document.querySelector("#date").value;
+        const time = document.querySelector("#time").value;
+
+        try {
+          // Send address, scrap details, and other fields to server
+          const response = await fetch(
+            "http://localhost:5000/api/scrap/sendScrapData",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "auth-token": localStorage.getItem("token"),
+              },
+              body: JSON.stringify({
+                name,
+                phone,
+                address,
+                scrapDetails,
+                itemWeight,
+                date,
+                time,
+              }),
+            }
+          );
+
+          const data = await response.json();
+          console.log(data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+      const form = document.getElementById("scrap-form");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        sendScrapData();
+      });
+    </script>
+
+
+
+
+
+    <!-- Footer -->
+    <section id="footer">
+      <div class="footer container">
+        <div class="brand">
+          <h1><span>R</span>ahul <span>M</span>ohite</h1>
+        </div>
+        <h2>Find more on </h2>
+        <div class="social-icon">
+          <div class="social-item">
+            <a href="https://www.facebook.com/Rahul Mohite"><img
+                src="https://img.icons8.com/bubbles/100/000000/facebook-new.png" /></a>
+          </div>
+          <div class="social-item">
+            <a href="https://www.instagram.com/rahul._.mohite14/"><img
+                src="https://img.icons8.com/bubbles/100/000000/instagram-new.png" /></a>
+          </div>
+          
+        </div>
+        <p>Copyright © 2023 Rahul. All rights reserved</p>
+      </div>
+    </section>
+    <!-- End Footer -->
+    <script src="./app.js"></script>
+  </div>
+</body>
+
+</html>

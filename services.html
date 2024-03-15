@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>RATE</title>
+</head>
+<body>
+  <!-- Header -->
+  <section id="header">
+    <div class="header container">
+      <div class="navbar">
+        <div class="brand">
+          <h1><span>   E-Waste &     </span>  Raddi Collection </h1></a>
+        </div>
+        <div class="nav-list">
+          <div class="hamburger"><div class="bar"></div></div>
+          <ul>
+            <li><a href="./index.html" data-after="Home">Home</a></li>
+            <li><a href="./projects.html" data-after="Projects">Rate</a></li>
+            <li><a href="./about.html" data-after="About">Pickup-Schedule</a></li>
+            <li><a href="./contact.html" data-after="Contact">Contact</a></li>
+            <li id="login-logout"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Header -->
+  
+  <script>
+    const loginLogoutEl = document.getElementById("login-logout");
+    const token = localStorage.getItem("token");
+    
+    if (token) {
+      loginLogoutEl.innerHTML = '<a href="#" onclick="logoutUser()" data-after="LogOut">LogOut</a>';
+    } else {
+      loginLogoutEl.innerHTML = '<a href="./login.html" data-after="LogIn">LogIn</a>';
+    }
+  
+    function logoutUser() {
+      localStorage.removeItem("token");
+      window.location.href = "./login.html";
+    }
+  </script>
+
+  <!-- Service Section -->
+  <section id="services">
+    <div class="services container">
+      <div class="service-top">
+        <h1 class="section-title">RA<span>T</span>E</h1>
+        <p>Here are the Rate </p>
+        <p>As per Scrape you have</p>
+      </div>
+      <div class="service-bottom">
+        <div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>NEWSPAPERS</h2>
+          <p>RS 18/KG</p>
+        </div>
+        <div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>BOOKS </h2>
+          <p>RS 16/KG</p>
+        </div>
+        <div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>CARDBOARD</h2>
+          <p>RS 10/KG </p>
+        </div>
+        <div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>PLASTICS</h2>
+          <p>RS 10/KG</p>
+        </div>
+        <div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>IRON</h2>
+          <p>RS 30/KG</p>
+        </div>
+        <div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>STEEL</h2>
+          <p>RS 36/KG</p>
+        </div>
+        <div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>ALUMINIUM</h2>
+          <p>100/KG</p>
+        </div>
+        <div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>BRASS</h2>
+          <p>RS 300/KG</p>
+        </div>
+        <div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>COPPER</h2>
+          <p>RS 420/KG</p>
+        </div>
+        <div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>IRON COOLER</h2>
+          <p>RS 30/KG</p>
+        </div><div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>PLASTIC COOLER</h2>
+          <p>RS 15/KG</p>
+        </div><div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>WINDOW AC ALUMINIUM</h2>
+          <p>RS 2300/KG</p>
+        </div><div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>FORNT LOAD AUTO WASHING MACHINE</h2>
+          <p>RS 800/KG</p>
+        </div><div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>TOP LOAD AUTO WASHING MACHINE</h2>
+          <p>RS 500/KG</p>
+        </div><div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>SEMI AUTO WASHING MACHINE</h2>
+          <p>RS 480/KG</p>
+        </div><div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>GEYSER</h2>
+          <p>RS 20/KG</p>
+        </div><div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>SINGLE DOOR FRIDGE</h2>
+          <p>RS 750/PEICE</p>
+        </div><div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>DOUBLE DOOR FRIDGE</h2>
+          <p>RS 1000/PEICE</p>
+        </div><div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>AC(2 TON)</h2>
+          <p>RS 3800/PEICE</p>
+        </div>
+        <div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>AC(1.5 TON)</h2>
+          <p>RS 3500/PEICE</p>
+        </div><div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>AC(1 TON)</h2>
+          <p>RS 2100/PEICE</p>
+        </div><div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>HEAVY E-WASTE(METAL>PLASTIC)</h2>
+          <p>RS 30/KG</p>
+        </div><div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>LIGHT E-WASTE(METAL>PLASTCI)</h2>
+          <p>RS 15/KG</p>
+        </div><div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>CELING FAN</h2>
+          <p>RS 30/KG</p>
+        </div><div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>MOTOR(COPPER WIRING)</h2>
+          <p>RS 35/KG</p>
+        </div><div class="service-item">
+          <div class="icon"><img src="https://img.icons8.com/emoji/48/000000/world-map-emoji.png"/></div>
+          <h2>INVERTER BATTRIES</h2>
+          <p>RS 70/KG</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Service Section -->
+
+  
+  <!-- Footer -->
+  <section id="footer">
+    <div class="footer container">
+      <div class="brand"><h1><span>R</span>ahul <span>M</span>ohite</h1></div>
+      <h2>Find more on</h2>
+      <div class="social-icon">
+        <div class="social-item">
+          <a href="https://www.facebook.com/Rahul Mohite"><img src="https://img.icons8.com/bubbles/100/000000/facebook-new.png"/></a>
+        </div>
+        <div class="social-item">
+          <a href="https://www.instagram.com/rahul._.mohite14/"><img src="https://img.icons8.com/bubbles/100/000000/instagram-new.png"/></a>
+        </div>
+       
+        
+      </div>
+      <p>Copyright © 2023 Rahul. All rights reserved</p>
+    </div>
+  </section>
+  <!-- End Footer -->
+  <script src="./app.js"></script>
+</body>
+</html>

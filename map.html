@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #map {
+        height: 500px;
+        width: 500px;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="map"></div>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- jQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+      // Replace your Configuration here..
+      var config = {
+        apiKey: "AIzaSyAe4HH4BTMNcPd6rHI17EEaRNlmWmGAkuc",
+        authDomain: "realtime-on-map-example.firebaseapp.com",
+        databaseURL: "https://realtime-on-map-example.firebaseio.com",
+        projectId: "realtime-on-map-example",
+        storageBucket: "",
+        messagingSenderId: "851837622908",
+      };
+      firebase.initializeApp(config);
+    </script>
+
+    <script>
+      // markers array to store all the markers, so that we could remove marker when any car goes offline and its data will be remove from realtime database...
+      var map;
+      function initMap() {
+        // Google Map Initialization...
+        map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 16,
+          center: new google.maps.LatLng(31.52011, 74.368604),
+          mapTypeId: "terrain",
+        });
+      }
+    </script>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7DtKqWoAtgKFmYtUu-PceyA7bV1Y9NTU&callback=initMap"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="profile.css">
+  <title>Profile:EWRC</title>
+</head>
+
+<body>
+  <!-- Header -->
+  <section id="header">
+    <div class="header container">
+      <div class="navbar">
+        <div class="brand">
+          <h1><span> E-Waste & </span> Raddi Collection </h1></a>
+        </div>
+        <div class="nav-list">
+          <div class="hamburger">
+            <div class="bar"></div>
+          </div>
+          <ul>
+            <li><a href="./index.html" data-after="Home">Home</a></li>
+            <li><a href="./projects.html" data-after="Projects">Rate</a></li>
+            <li><a href="./about.html" data-after="About">Pickup-Schedule</a></li>
+            <li><a href="./contact.html" data-after="Contact">Contact</a></li>
+            <li id="login-logout"></li>
+            <li><a href="./profile.html" data-after="Profile">Profile</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Header -->
+  <script>
+    const loginLogoutEl = document.getElementById("login-logout");
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      loginLogoutEl.innerHTML = '<a href="#" onclick="logoutUser()" data-after="LogOut">LogOut</a>';
+    } else {
+      loginLogoutEl.innerHTML = '<a href="./login.html" data-after="LogIn">LogIn</a>';
+    }
+
+    function logoutUser() {
+      localStorage.removeItem("token");
+      window.location.href = "./login.html";
+    }
+  </script>
+
+
+
+  <div class="pro">
+    <!-- Main -->
+    <div class="main mt-8 ml-1/3 w-5/6 text-2xl">
+      <h2 class="text-gray-700 font-semibold mb-4">Your Profile</h2>
+      <div class="card rounded-lg shadow-md mb-8">
+        <div class="card-body px-10 py-8 relative">
+          <i class="fas fa-pen fa-xs text-white absolute right-0 top-0 mr-10 mt-3"></i>
+          <table class="text-gray-700 font-semibold text-lg w-4/5 mx-auto">
+            <tbody>
+              <tr>
+                <td>Name</td>
+                <td>:</td>
+                <td id="name"></td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>:</td>
+                <td id="email"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- End -->
+  </div>
+
+
+  <script>
+    const showUserData = async () => {
+      try {
+        // Fetch user data from the server
+        const response = await fetch("http://localhost:5000/api/auth/userdata", {
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": localStorage.getItem("token"),
+          },
+        });
+        const data = await response.json();
+
+        // Set user's name and email in the DOM
+        document.getElementById("name").textContent = data.name;
+        document.getElementById("email").textContent = data.email;
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    showUserData();
+  </script>
+
+
+
+
+
+
+  <section id="footer">
+    <div class="footer container">
+      <div class="brand">
+        <h1><span>R</span>ahul <span>M</span>ohite</h1>
+      </div>
+      <h2>Find more on</h2>
+      <div class="social-icon">
+        <div class="social-item">
+          <a href="https://www.facebook.com/Rahul Mohite"><img
+              src="https://img.icons8.com/bubbles/100/000000/facebook-new.png" /></a>
+        </div>
+        <div class="social-item">
+          <a href="https://www.instagram.com/rahul._mohite14/"><img
+              src="https://img.icons8.com/bubbles/100/000000/instagram-new.png" /></a>
+        </div>
+         
+
+      </div>
+      <p>Copyright © 2023 Rahul. All rights reserved</p>
+    </div>
+  </section>
+  <!-- End Footer -->
+
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>EWRC</title>
+
+  
+</head>
+<body>
+  <!-- Header -->
+  <section id="header">
+    <div class="header container">
+      <div class="navbar">
+        <div class="brand">
+          <h1><span>   E-Waste &     </span>  Raddi Collection </h1></a>
+        </div>
+        <div class="nav-list">
+          <div class="hamburger topnav  "><div class="bar"></div>
+        </div>
+          <ul>
+            <li><a href="./index.html" data-after="Home">Home</a></li>
+            <li><a href="./projects.html" data-after="Projects">Rate</a></li>
+            <li><a href="./about.html" data-after="About">Pickup-Schedule</a></li>
+            <li><a href="./contact.html" data-after="Contact">Contact</a></li>
+            <li><a href="./login page.html" data-after="Login">Login</a></li>
+            <li><a href="./profile.html" data-after="Profile">Profile</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  
+
+
+  <!-- End Header -->
+  <script>
+    const loginLogoutEl = document.getElementById("login-logout");
+    const token = localStorage.getItem("token");
+    
+    if (token) {
+      loginLogoutEl.innerHTML = '<a href="#" onclick="logoutUser()" data-after="LogOut">LogOut</a>';
+    } else {
+      loginLogoutEl.innerHTML = '<a href="./login.html" data-after="LogIn">LogIn</a>';
+    }
+  
+    function logoutUser() {
+      localStorage.removeItem("token");
+      window.location.href = "./login.html";
+    }
+  </script>
+
+  <!-- Hero Section  -->
+  <section id="hero">
+    <div class="hero container">
+      <div>
+        <h1>Welcome, <span></span></h1>
+        <h1>to the  <span></span></h1>
+        <h1>E-Waste & Raddi Collection <span></span></h1>
+      </div>
+    </div>
+  </section>
+  <!-- End Hero Section  -->
+
+  
+
+  <!-- Footer -->
+  <section id="footer">
+    <div class="footer container">
+      <div class="brand"><h1><span>R</span>ahul <span>M</span>ohite</h1></div>
+      <h2>Find more on </h2>
+      <div class="social-icon">
+        <div class="social-item">
+          <a href="https://www.facebook.com/Rahul Mohite"><img src="https://img.icons8.com/bubbles/100/000000/facebook-new.png"/></a>
+        </div>
+        <div class="social-item">
+          <a href="https://www.instagram.com/rahul._.mohite14/"><img src="https://img.icons8.com/bubbles/100/000000/instagram-new.png"/></a>
+        </div>
+        
+        
+      </div>
+      <p>Copyright © 2023 Rahul. All rights reserved</p>
+    </div>
+  </section>
+  <!-- End Footer -->
+  <script src="./app.js"></script>
+</body>
+</html>
